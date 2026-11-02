@@ -17,7 +17,7 @@ main{max-width:1180px;margin:24px auto;padding:0 18px 70px}.hero{display:grid;gr
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.search{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 13px;color:var(--text)}.action{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 13px;border-radius:10px}.action:hover{border-color:var(--gold)}
 .view{display:none}.view.active{display:block}.section-title{font:500 23px Georgia,serif;margin:20px 0 12px;color:var(--gold)}
 .region{border:1px solid var(--line);background:var(--panel);border-radius:14px;margin:10px 0;overflow:hidden}.region-head{width:100%;text-align:left;border:0;background:transparent;color:var(--text);padding:15px 17px;display:flex;align-items:center;gap:12px}.region-head:hover{background:#ffffff06}.region-num{color:var(--gold);font:20px Georgia,serif;width:28px}.region-name{font:18px Georgia,serif;flex:1}.region-meta{font-size:12px;color:var(--muted)}.chev{color:var(--gold);transition:transform .2s}.region.open .chev{transform:rotate(90deg)}.region-body{display:none;padding:0 17px 18px}.region.open .region-body{display:block}
-.chips{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 13px}.chip{font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.subhead{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin:12px 0 7px}.checklist{display:grid;gap:5px}.check{display:flex;align-items:flex-start;gap:9px;padding:5px 7px;border-radius:7px}.check:hover{background:#ffffff08}.check input{accent-color:#c9a95e;margin-top:4px}.check.done .label{text-decoration:line-through;color:#777d70}.tag{font-size:10px;border-radius:4px;padding:2px 5px;margin-left:5px;white-space:nowrap}.main{background:#31533a;color:#c5e5c8}.optional{background:#354b59;color:#c6dfec}.quest{background:#5b4a28;color:#f1dca6}.warning{background:#5c302b;color:#f1c0b7}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 13px}.chip{font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.subhead{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin:12px 0 7px}.checklist{display:grid;gap:5px}.check{display:flex;align-items:flex-start;gap:9px;padding:5px 7px;border-radius:7px;min-width:0}.check:hover{background:#ffffff08}.check-main{display:flex;align-items:flex-start;gap:9px;flex:1;min-width:0}.check input{accent-color:#c9a95e;margin-top:4px;flex:0 0 auto}.check.done .label{text-decoration:line-through;color:#777d70}.map-link{flex:0 0 auto;margin:4px 1px 0 8px;color:var(--gold);font-size:11px;line-height:1.3;text-decoration:none;white-space:nowrap;opacity:.82}.map-link:hover,.map-link.ready{opacity:1;text-decoration:underline}.map-link:not(.ready){color:var(--muted)}.tag{font-size:10px;border-radius:4px;padding:2px 5px;margin-left:5px;white-space:nowrap}.main{background:#31533a;color:#c5e5c8}.optional{background:#354b59;color:#c6dfec}.quest{background:#5b4a28;color:#f1dca6}.warning{background:#5c302b;color:#f1c0b7}
 .note{border-left:3px solid var(--gold);background:#d6b66c12;padding:10px 13px;border-radius:0 8px 8px 0;margin:12px 0;color:#d9d4c5;font-size:13px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-weight:600}tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:3px 7px;border-radius:99px;background:#ffffff0b;color:var(--muted);font-size:11px}
 .quest-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px;margin:9px 0}.quest-card h3{font:17px Georgia,serif;color:var(--gold);margin:0 0 7px}.quest-card p{margin:5px 0;color:var(--muted);font-size:13px}.quest-card ul{margin:8px 0 0;padding-left:20px}.quest-card li{margin:4px 0}.conflict{border:1px solid #65423b;background:#281b19;border-radius:12px;padding:14px;margin:10px 0}.conflict h3{margin:0 0 6px;color:#e4a093;font:17px Georgia,serif}.conflict p{margin:5px 0;color:#d0c3ba;font-size:13px}
@@ -71,7 +71,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
   <p class="muted">You can prepare several ending questlines in one playthrough, but choose only one ending at the conclusion. Frenzied Flame needs special handling because it overrides the ordinary choice.</p>
   <div id="endingList"></div>
  </section>
- <div class="footer">Unofficial fan-made checklist · No game files or external services required · Progress stored locally in your browser</div>
+ <div class="footer">Unofficial fan-made checklist · Progress stored locally in your browser · Map links open the community interactive map by jw-ofs</div>
 </main>
 <script>
 const regions = [
@@ -138,9 +138,13 @@ const endings=[
 const stateKey="elden-ring-companion-v1";
 let saved={};try{saved=JSON.parse(localStorage.getItem(stateKey)||"{}")}catch(e){}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function item(text,tag=""){const id="i-"+btoa(unescape(encodeURIComponent(text))).replace(/[^a-zA-Z0-9]/g,"").slice(0,28);return `<label class="check ${saved[id]?"done":""}" data-search="${esc(text.toLowerCase())}"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(text)} ${tag?`<span class="tag ${tag.toLowerCase()}">${esc(tag)}</span>`:""}</span></label>`}
+function item(text,tag="",isGrace=false){
+ const id="i-"+btoa(unescape(encodeURIComponent(text))).replace(/[^a-zA-Z0-9]/g,"").slice(0,28);
+ const mapLink=isGrace?`<a class="map-link" data-map-grace="${esc(text)}" href="https://jw-ofs.github.io/elden-ring-map/" target="_blank" rel="noopener noreferrer">View in map ↗</a>`:"";
+ return `<div class="check ${saved[id]?"done":""}" data-search="${esc(text.toLowerCase())}"><label class="check-main"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(text)} ${tag?`<span class="tag ${tag.toLowerCase()}">${esc(tag)}</span>`:""}</span></label>${mapLink}</div>`;
+}
 function renderRegions(){
- document.getElementById("regions").innerHTML=regions.map((r,i)=>`<article class="region ${i===0?"open":""}" data-region="${i}"><button class="region-head"><span class="region-num">${String(i+1).padStart(2,"0")}</span><span class="region-name">${esc(r.name)}</span><span class="region-meta">Lv. ${esc(r.level)} · ${r.bosses.length} bosses</span><span class="chev">›</span></button><div class="region-body"><p class="muted small">${esc(r.desc)}</p><div class="chips"><span class="chip">Suggested level ${esc(r.level)}</span><span class="chip">${r.graces.length} grace anchors</span><span class="chip">${r.bosses.length} boss encounters</span></div><div class="cols"><div><div class="subhead">Sites of Grace</div><div class="checklist">${r.graces.map(x=>item(x)).join("")}</div></div><div><div class="subhead">Boss checklist</div><div class="checklist">${r.bosses.map(b=>item(b[0]+" — "+b[1],b[2])).join("")}</div><div class="subhead">NPC / region tasks</div><div class="checklist">${r.npcs.map(x=>item(x,"Quest")).join("")}</div></div></div></div></article>`).join("");
+ document.getElementById("regions").innerHTML=regions.map((r,i)=>`<article class="region ${i===0?"open":""}" data-region="${i}"><button class="region-head"><span class="region-num">${String(i+1).padStart(2,"0")}</span><span class="region-name">${esc(r.name)}</span><span class="region-meta">Lv. ${esc(r.level)} · ${r.bosses.length} bosses</span><span class="chev">›</span></button><div class="region-body"><p class="muted small">${esc(r.desc)}</p><div class="chips"><span class="chip">Suggested level ${esc(r.level)}</span><span class="chip">${r.graces.length} grace anchors</span><span class="chip">${r.bosses.length} boss encounters</span></div><div class="cols"><div><div class="subhead">Sites of Grace</div><div class="checklist">${r.graces.map(x=>item(x,"",true)).join("")}</div></div><div><div class="subhead">Boss checklist</div><div class="checklist">${r.bosses.map(b=>item(b[0]+" — "+b[1],b[2])).join("")}</div><div class="subhead">NPC / region tasks</div><div class="checklist">${r.npcs.map(x=>item(x,"Quest")).join("")}</div></div></div></div></article>`).join("");
 }
 function renderQuests(filter="all"){
  const list=quests.filter(q=>filter==="all"||q[4]===filter||filter==="missable"&&q[4]==="missable");
@@ -152,7 +156,59 @@ function updateProgress(){
  const boxes=[...document.querySelectorAll('input[type="checkbox"][data-id]')];const total=boxes.length,done=boxes.filter(b=>b.checked).length;
  document.getElementById("doneCount").textContent=done;document.getElementById("todoCount").textContent=total-done;document.getElementById("progressText").textContent=`${done} of ${total} checklist items completed`;document.getElementById("progressBar").style.width=(total?done/total*100:0)+"%";
 }
+
+// Map links use the same pixel coordinates and map layers as the community interactive map.
+// The map's own marker dataset supplies the exact Site of Grace pin coordinates.
+const ER_MAP_HOME="https://jw-ofs.github.io/elden-ring-map/";
+const ER_MAP_MARKERS="https://raw.githubusercontent.com/jw-ofs/elden-ring-map/main/markers.js";
+const graceMapAliases={
+ "ashen capital":"Leyndell, Capital of Ash",
+ "palace entrance":"Dynasty Mausoleum Entrance",
+ "fractured marika":"Elden Throne"
+};
+function mapNameKey(value){
+ return String(value).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();
+}
+async function initializeGraceMapLinks(){
+ const links=[...document.querySelectorAll("[data-map-grace]")];
+ if(!links.length)return;
+ try{
+  const response=await fetch(ER_MAP_MARKERS,{cache:"force-cache"});
+  if(!response.ok)throw new Error("Map marker data unavailable");
+  const source=await response.text();
+  const pattern=/\{\s*id:"[^"]+",\s*cat:"grace",\s*name:"((?:\\.|[^"\\])*)",\s*master:"(M\d+)",\s*px:([\d.]+),\s*py:([\d.]+)/g;
+  const markers=new Map();
+  let match;
+  while((match=pattern.exec(source))){
+   let name;
+   try{name=JSON.parse('"'+match[1]+'"')}catch(e){continue}
+   markers.set(mapNameKey(name),{master:match[2],px:match[3],py:match[4]});
+  }
+  links.forEach(link=>{
+   const label=link.dataset.mapGrace;
+   const key=mapNameKey(label);
+   const marker=markers.get(key)||markers.get(mapNameKey(graceMapAliases[key]||""));
+   if(marker){
+    link.href=`${ER_MAP_HOME}#${marker.master}/${marker.px}/${marker.py}/4.75`;
+    link.classList.add("ready");
+    link.title=`Open ${label} on the interactive map`;
+   }else{
+    link.href=ER_MAP_HOME;
+    link.textContent="Open map ↗";
+    link.title="No exact pin for this checklist label; open the map and search manually";
+   }
+  });
+ }catch(error){
+  links.forEach(link=>{
+   link.href=ER_MAP_HOME;
+   link.textContent="Open map ↗";
+   link.title="Map coordinates could not be loaded; open the full interactive map";
+  });
+ }
+}
+
 renderRegions();renderQuests();renderConflicts();renderEndings();updateProgress();
+initializeGraceMapLinks();
 document.addEventListener("change",e=>{if(e.target.matches('input[type="checkbox"][data-id]')){const id=e.target.dataset.id;saved[id]=e.target.checked;localStorage.setItem(stateKey,JSON.stringify(saved));e.target.closest(".check").classList.toggle("done",e.target.checked);updateProgress();}});
 document.addEventListener("click",e=>{
  const head=e.target.closest(".region-head");if(head)head.closest(".region").classList.toggle("open");
