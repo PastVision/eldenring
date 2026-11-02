@@ -17,13 +17,57 @@ main{max-width:1180px;margin:24px auto;padding:0 18px 70px}.hero{display:grid;gr
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.search{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 13px;color:var(--text)}.action{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 13px;border-radius:10px}.action:hover{border-color:var(--gold)}
 .view{display:none}.view.active{display:block}.section-title{font:500 23px Georgia,serif;margin:20px 0 12px;color:var(--gold)}
 .region{border:1px solid var(--line);background:var(--panel);border-radius:14px;margin:10px 0;overflow:hidden}.region-head{width:100%;text-align:left;border:0;background:transparent;color:var(--text);padding:15px 17px;display:flex;align-items:center;gap:12px}.region-head:hover{background:#ffffff06}.region-num{color:var(--gold);font:20px Georgia,serif;width:28px}.region-name{font:18px Georgia,serif;flex:1}.region-meta{font-size:12px;color:var(--muted)}.chev{color:var(--gold);transition:transform .2s}.region.open .chev{transform:rotate(90deg)}.region-body{display:none;padding:0 17px 18px}.region.open .region-body{display:block}
-.chips{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 13px}.chip{font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.subhead{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin:12px 0 7px}.checklist{display:grid;gap:5px}.check{display:flex;align-items:flex-start;gap:9px;padding:5px 7px;border-radius:7px;min-width:0}.check:hover{background:#ffffff08}.check-main{display:flex;align-items:flex-start;gap:9px;flex:1;min-width:0}.check input{accent-color:#c9a95e;margin-top:4px;flex:0 0 auto}.check.done .label{text-decoration:line-through;color:#777d70}.map-link{flex:0 0 auto;margin:4px 1px 0 8px;color:var(--gold);font-size:11px;line-height:1.3;text-decoration:none;white-space:nowrap;opacity:.82}.map-link:hover,.map-link.ready{opacity:1;text-decoration:underline}.map-link:not(.ready){color:var(--muted)}.tag{font-size:10px;border-radius:4px;padding:2px 5px;margin-left:5px;white-space:nowrap}.main{background:#31533a;color:#c5e5c8}.optional{background:#354b59;color:#c6dfec}.quest{background:#5b4a28;color:#f1dca6}.warning{background:#5c302b;color:#f1c0b7}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 13px}.chip{font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.subhead{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin:12px 0 7px}.checklist{display:grid;gap:5px}.check{display:flex;align-items:flex-start;gap:9px;padding:5px 7px;border-radius:7px}.check:hover{background:#ffffff08}.check input{accent-color:#c9a95e;margin-top:4px}.check.done .label{text-decoration:line-through;color:#777d70}.tag{font-size:10px;border-radius:4px;padding:2px 5px;margin-left:5px;white-space:nowrap}.main{background:#31533a;color:#c5e5c8}.optional{background:#354b59;color:#c6dfec}.quest{background:#5b4a28;color:#f1dca6}.warning{background:#5c302b;color:#f1c0b7}
 .note{border-left:3px solid var(--gold);background:#d6b66c12;padding:10px 13px;border-radius:0 8px 8px 0;margin:12px 0;color:#d9d4c5;font-size:13px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-weight:600}tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:3px 7px;border-radius:99px;background:#ffffff0b;color:var(--muted);font-size:11px}
 .quest-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px;margin:9px 0}.quest-card h3{font:17px Georgia,serif;color:var(--gold);margin:0 0 7px}.quest-card p{margin:5px 0;color:var(--muted);font-size:13px}.quest-card ul{margin:8px 0 0;padding-left:20px}.quest-card li{margin:4px 0}.conflict{border:1px solid #65423b;background:#281b19;border-radius:12px;padding:14px;margin:10px 0}.conflict h3{margin:0 0 6px;color:#e4a093;font:17px Georgia,serif}.conflict p{margin:5px 0;color:#d0c3ba;font-size:13px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:12px}.footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
 @media(max-width:760px){.hero{grid-template-columns:1fr}.cols{grid-template-columns:1fr}.region-meta{display:none}header{position:static}.stats{gap:6px}.stat{padding:9px}.stat strong{font-size:20px}}
+
+/* Integrated map overlay */
+.check{display:flex;align-items:flex-start;gap:8px;padding:5px 7px;border-radius:7px;min-width:0}
+.check-main{display:flex;align-items:flex-start;gap:9px;flex:1;min-width:0;cursor:pointer}
+.check-main input{accent-color:var(--gold);margin-top:4px;flex:0 0 auto}
+.map-link{flex:0 0 auto;border:1px solid rgba(201,169,94,.25);border-radius:5px;background:rgba(201,169,94,.07);color:var(--gold);font:inherit;font-size:10px;padding:3px 7px;margin:0 0 0 5px;white-space:nowrap;cursor:pointer}
+.map-link:hover{background:rgba(201,169,94,.17);border-color:var(--gold)}
+.map-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(4,5,7,.88);backdrop-filter:blur(8px);padding:clamp(8px,2vw,24px)}
+.map-modal.open{display:flex}
+.map-shell{display:flex;flex-direction:column;width:min(1500px,100%);height:100%;margin:auto;background:#111419;border:1px solid #51452d;border-radius:12px;overflow:hidden;box-shadow:0 24px 90px #000}
+.map-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#171a20;border-bottom:1px solid #393326}
+.map-title{display:flex;align-items:center;gap:11px;min-width:0}
+.map-sigil{font-size:25px;color:#d9b86d}
+.map-title strong{display:block;color:#e5d1a0;font-size:13px;letter-spacing:2px}
+.map-title small{display:block;color:#9a927f;font-size:10px;margin-top:3px}
+.map-actions{display:flex;align-items:center;gap:12px}
+.map-layers{display:flex;gap:3px;padding:3px;background:#0c0f13;border:1px solid #38352d;border-radius:7px}
+.map-layers button{border:0;background:transparent;color:#a9a18f;border-radius:5px;padding:7px 11px;font-size:11px;cursor:pointer}
+.map-layers button.active{background:#b99b5d;color:#17130b;font-weight:700}
+.map-close{width:34px;height:34px;border:1px solid #494132;border-radius:7px;background:#20232a;color:#e9dfc8;font-size:23px;line-height:1;cursor:pointer}
+.map-toolbar{display:flex;align-items:center;gap:12px;padding:9px 13px;background:#12151a;border-bottom:1px solid #302d25}
+.map-toolbar input{width:min(360px,65%);background:#20242c;border:1px solid #454033;border-radius:6px;padding:9px 11px;color:#eee5d1;outline:none;font-size:12px}
+.map-toolbar input:focus{border-color:#b99b5d}
+.map-toolbar span{font-size:10px;color:#9d957f}
+#graceLeafletMap{flex:1;min-height:0;background:#090b0e}
+.map-legend{display:flex;align-items:center;gap:8px;padding:8px 13px;background:#171a20;color:#c2b89f;font-size:10px;border-top:1px solid #393326}
+.legend-pin{width:10px;height:10px;border-radius:50%;background:#f5d477;border:2px solid #fff1c5;box-shadow:0 0 0 3px #b78c38;display:inline-block}
+.legend-dot{width:7px;height:7px;border-radius:50%;background:#d4c39a;display:inline-block;margin-left:8px}
+.map-credit{margin-left:auto;color:#777568}
+.grace-marker{width:13px;height:13px;border-radius:50%;background:#d8c79d;border:2px solid #27231a;box-shadow:0 1px 5px #000a}
+.grace-marker.selected{width:20px;height:20px;background:#f2d27d;border:3px solid #fff1bf;box-shadow:0 0 0 5px #c28e3c88,0 0 18px #f2d27d}
+.leaflet-container{background:#090b0e;font-family:inherit}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#1a1d23;color:#eee5d1;border:1px solid #51452d}
+.leaflet-popup-content{font-size:12px;line-height:1.5}
+.leaflet-control-zoom a{background:#1a1d23!important;color:#e7d8b4!important;border-color:#51452d!important}
+@media(max-width:650px){
+ .map-modal{padding:0}.map-shell{border-radius:0;border:0}
+ .map-head{align-items:flex-start;padding:10px}.map-actions{gap:6px;flex-direction:column-reverse;align-items:flex-end}
+ .map-layers button{padding:7px 8px;font-size:10px}
+ .map-toolbar{padding:8px}.map-toolbar input{width:58%}.map-toolbar span{font-size:9px}
+ .map-legend{font-size:9px;flex-wrap:wrap}.map-credit{width:100%;margin-left:0}
+}
+
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
 <header>
@@ -71,8 +115,33 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
   <p class="muted">You can prepare several ending questlines in one playthrough, but choose only one ending at the conclusion. Frenzied Flame needs special handling because it overrides the ordinary choice.</p>
   <div id="endingList"></div>
  </section>
- <div class="footer">Unofficial fan-made checklist · Progress stored locally in your browser · Map links open the community interactive map by jw-ofs</div>
+ <div class="footer">Unofficial fan-made checklist · No game files or external services required · Progress stored locally in your browser</div>
 </main>
+
+<!-- Integrated Elden Ring map -->
+<div id="graceMapModal" class="map-modal" aria-hidden="true">
+ <div class="map-shell">
+  <header class="map-head">
+   <div class="map-title"><span class="map-sigil">✦</span><div><strong>THE LANDS BETWEEN</strong><small id="mapCurrentGrace">Interactive map · select a Site of Grace</small></div></div>
+   <div class="map-actions">
+    <div class="map-layers" id="mapLayerTabs">
+     <button class="active" data-map-layer="M00">Overworld</button>
+     <button data-map-layer="M01">Underground</button>
+     <button data-map-layer="M10">Shadow Realm</button>
+    </div>
+    <button class="map-close" id="closeGraceMap" aria-label="Close map">×</button>
+   </div>
+  </header>
+  <div class="map-toolbar">
+   <input id="mapSearch" type="search" placeholder="Find a Site of Grace…" autocomplete="off">
+   <span id="mapStatus">Loading map markers…</span>
+  </div>
+  <div id="graceLeafletMap"></div>
+  <div class="map-legend"><span class="legend-pin"></span> Selected Site of Grace <span class="legend-dot"></span> Other Sites of Grace <span class="map-credit">Map tiles & coordinates: community datamining project · rendered here with Leaflet</span></div>
+ </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const regions = [
 {name:"Limgrave",level:"1–30",desc:"Starting region · Margit and Godrick",graces:["The First Step","Church of Elleh","Gatefront","Stormhill Shack","Saintsbridge","Deathtouched Catacombs","Groveside Cave","Coastal Cave","Limgrave Tunnels","Murkwater Cave","Murkwater Catacombs","Agheel Lake North","Agheel Lake South","Seaside Ruins","Dragon-Burnt Ruins","Waypoint Ruins Cellar","Warmaster's Shack","Stormhill Evergaol","Mistwood Outskirts","Third Church of Marika","Fort Haight West","Siofra River Well Depths"],bosses:[["Tree Sentinel","Limgrave field","Optional"],["Soldier of Godrick","Fringefolk Hero's Grave","Optional"],["Beastman of Farum Azula","Groveside Cave","Optional"],["Demi-Human Chiefs","Coastal Cave","Optional"],["Patches","Murkwater Cave","Quest"],["Bloody Finger Nerijus","Murkwater ravine","Quest"],["Mad Pumpkin Head","Waypoint Ruins","Optional"],["Stonedigger Troll","Limgrave Tunnels","Optional"],["Grave Warden Duelist","Murkwater Catacombs","Optional"],["Black Knife Assassin","Deathtouched Catacombs","Optional"],["Tibia Mariner","Summonwater Village","Optional"],["Flying Dragon Agheel","Agheel Lake","Optional"],["Night's Cavalry","Agheel Lake North road","Optional"],["Bell Bearing Hunter","Warmaster's Shack (night)","Optional"],["Crucible Knight","Stormhill Evergaol","Optional"],["Margit, the Fell Omen","Stormveil entrance","Main"],["Godrick the Grafted","Stormveil Castle","Main"]],npcs:["Varre — speak at The First Step; revisit after reaching Liurnia.","Melina — meet at a qualifying Site of Grace; obtain Torrent.","Boc — find the talking tree near Agheel Lake; free him and follow his moves.","Blaidd — hear the howl in Mistwood, then ask Kalé about it.","Alexander — free him from the ground in northern Stormhill.","Yura — meet near Agheel Lake and continue his dragon / invasion storyline.","Patches — spare him in Murkwater Cave.","Sellen — meet in Waypoint Ruins Cellar.","Kenneth Haight — meet in East Limgrave; clear Fort Haight.","D — meet near Summonwater Village; follow his introduction to Gurranq.","Roderika — speak at Stormhill Shack, then Roundtable Hold.","Rogier and Nepheli — speak to both during Stormveil.","Fia and Diallos — begin their Roundtable Hold conversations."]},
@@ -140,8 +209,10 @@ let saved={};try{saved=JSON.parse(localStorage.getItem(stateKey)||"{}")}catch(e)
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function item(text,tag="",isGrace=false){
  const id="i-"+btoa(unescape(encodeURIComponent(text))).replace(/[^a-zA-Z0-9]/g,"").slice(0,28);
- const mapLink=isGrace?`<a class="map-link" data-map-grace="${esc(text)}" href="https://jw-ofs.github.io/elden-ring-map/" target="_blank" rel="noopener noreferrer">View in map ↗</a>`:"";
- return `<div class="check ${saved[id]?"done":""}" data-search="${esc(text.toLowerCase())}"><label class="check-main"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(text)} ${tag?`<span class="tag ${tag.toLowerCase()}">${esc(tag)}</span>`:""}</span></label>${mapLink}</div>`;
+ return `<div class="check ${saved[id]?"done":""}" data-search="${esc(text.toLowerCase())}">
+  <label class="check-main"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(text)} ${tag?`<span class="tag ${tag.toLowerCase()}">${esc(tag)}</span>`:""}</span></label>
+  ${isGrace?`<button class="map-link" type="button" data-map-grace="${esc(text)}">View in map ↗</button>`:""}
+ </div>`;
 }
 function renderRegions(){
  document.getElementById("regions").innerHTML=regions.map((r,i)=>`<article class="region ${i===0?"open":""}" data-region="${i}"><button class="region-head"><span class="region-num">${String(i+1).padStart(2,"0")}</span><span class="region-name">${esc(r.name)}</span><span class="region-meta">Lv. ${esc(r.level)} · ${r.bosses.length} bosses</span><span class="chev">›</span></button><div class="region-body"><p class="muted small">${esc(r.desc)}</p><div class="chips"><span class="chip">Suggested level ${esc(r.level)}</span><span class="chip">${r.graces.length} grace anchors</span><span class="chip">${r.bosses.length} boss encounters</span></div><div class="cols"><div><div class="subhead">Sites of Grace</div><div class="checklist">${r.graces.map(x=>item(x,"",true)).join("")}</div></div><div><div class="subhead">Boss checklist</div><div class="checklist">${r.bosses.map(b=>item(b[0]+" — "+b[1],b[2])).join("")}</div><div class="subhead">NPC / region tasks</div><div class="checklist">${r.npcs.map(x=>item(x,"Quest")).join("")}</div></div></div></div></article>`).join("");
@@ -157,58 +228,106 @@ function updateProgress(){
  document.getElementById("doneCount").textContent=done;document.getElementById("todoCount").textContent=total-done;document.getElementById("progressText").textContent=`${done} of ${total} checklist items completed`;document.getElementById("progressBar").style.width=(total?done/total*100:0)+"%";
 }
 
-// Map links use the same pixel coordinates and map layers as the community interactive map.
-// The map's own marker dataset supplies the exact Site of Grace pin coordinates.
-const ER_MAP_HOME="https://jw-ofs.github.io/elden-ring-map/";
-const ER_MAP_MARKERS="https://raw.githubusercontent.com/jw-ofs/elden-ring-map/main/markers.js";
-const graceMapAliases={
- "ashen capital":"Leyndell, Capital of Ash",
- "palace entrance":"Dynasty Mausoleum Entrance",
- "fractured marika":"Elden Throne"
-};
-function mapNameKey(value){
- return String(value).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();
-}
-async function initializeGraceMapLinks(){
- const links=[...document.querySelectorAll("[data-map-grace]")];
- if(!links.length)return;
- try{
-  const response=await fetch(ER_MAP_MARKERS,{cache:"force-cache"});
-  if(!response.ok)throw new Error("Map marker data unavailable");
-  const source=await response.text();
-  const pattern=/\{\s*id:"[^"]+",\s*cat:"grace",\s*name:"((?:\\.|[^"\\])*)",\s*master:"(M\d+)",\s*px:([\d.]+),\s*py:([\d.]+)/g;
-  const markers=new Map();
-  let match;
-  while((match=pattern.exec(source))){
-   let name;
-   try{name=JSON.parse('"'+match[1]+'"')}catch(e){continue}
-   markers.set(mapNameKey(name),{master:match[2],px:match[3],py:match[4]});
-  }
-  links.forEach(link=>{
-   const label=link.dataset.mapGrace;
-   const key=mapNameKey(label);
-   const marker=markers.get(key)||markers.get(mapNameKey(graceMapAliases[key]||""));
-   if(marker){
-    link.href=`${ER_MAP_HOME}#${marker.master}/${marker.px}/${marker.py}/4.75`;
-    link.classList.add("ready");
-    link.title=`Open ${label} on the interactive map`;
-   }else{
-    link.href=ER_MAP_HOME;
-    link.textContent="Open map ↗";
-    link.title="No exact pin for this checklist label; open the map and search manually";
-   }
-  });
- }catch(error){
-  links.forEach(link=>{
-   link.href=ER_MAP_HOME;
-   link.textContent="Open map ↗";
-   link.title="Map coordinates could not be loaded; open the full interactive map";
-  });
+/* ---- Integrated map controller: native Leaflet canvas + hosted high-res tile pyramid ---- */
+const GRACE_MARKER_SOURCE="https://raw.githubusercontent.com/jw-ofs/elden-ring-map/main/markers.js";
+const GRACE_TILE_SOURCE="https://jw-ofs.github.io/elden-ring-map/ctiles/{map}/base/{z}/{y}/{x}.webp";
+const GRACE_MAP_SIZE=10496, GRACE_NATIVE_ZOOM=6, GRACE_SCALE=64;
+let graceMarkers=[], graceLeaflet=null, graceTileLayer=null, gracePinLayer=null;
+let selectedGraceMarker=null, activeGraceLayer="M00", mapMarkerPromise=null;
+
+function graceKey(s){return String(s).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();}
+function graceLatLng(px,py){return L.latLng(-py/GRACE_SCALE,px/GRACE_SCALE);}
+function graceIcon(selected=false){return L.divIcon({className:"",html:`<div class="grace-marker ${selected?"selected":""}"></div>`,iconSize:selected?[20,20]:[13,13],iconAnchor:selected?[10,10]:[6.5,6.5]});}
+function parseGraceMarkers(source){
+ const rx=/\{\s*id:"([^"]+)",\s*cat:"grace",\s*name:"((?:\\.|[^"\\])*)",\s*master:"(M\d+)",\s*px:([\d.]+),\s*py:([\d.]+),\s*desc:"((?:\\.|[^"\\])*)"\s*\}/g;
+ const rows=[];let m;
+ while((m=rx.exec(source))){
+  const decode=s=>{try{return JSON.parse('"'+s+'"')}catch{return s}};
+  rows.push({id:m[1],name:decode(m[2]),layer:m[3],x:+m[4],y:+m[5],region:decode(m[6])});
  }
+ return rows;
 }
+async function loadGraceMarkers(){
+ if(!mapMarkerPromise){
+  mapMarkerPromise=fetch(GRACE_MARKER_SOURCE).then(r=>{if(!r.ok)throw Error("Could not load Grace coordinates");return r.text()}).then(parseGraceMarkers);
+ }
+ graceMarkers=await mapMarkerPromise;return graceMarkers;
+}
+function makeGraceLeaflet(){
+ if(graceLeaflet)return;
+ const bounds=L.latLngBounds(graceLatLng(0,GRACE_MAP_SIZE),graceLatLng(GRACE_MAP_SIZE,0));
+ graceLeaflet=L.map("graceLeafletMap",{crs:L.CRS.Simple,minZoom:1,maxZoom:7,zoomControl:true,attributionControl:false,maxBounds:bounds.pad(.2),maxBoundsViscosity:.7,zoomSnap:.25,zoomDelta:.5});
+ graceLeaflet.setView(graceLatLng(4200,5000),2);
+ gracePinLayer=L.layerGroup().addTo(graceLeaflet);
+}
+function setGraceLayer(layer){
+ activeGraceLayer=layer;
+ document.querySelectorAll("[data-map-layer]").forEach(b=>b.classList.toggle("active",b.dataset.mapLayer===layer));
+ if(graceTileLayer)graceLeaflet.removeLayer(graceTileLayer);
+ graceTileLayer=L.tileLayer(GRACE_TILE_SOURCE.replace("{map}",layer),{tileSize:256,minZoom:1,maxZoom:7,maxNativeZoom:6,noWrap:true,keepBuffer:3,updateWhenIdle:true}).addTo(graceLeaflet);
+ gracePinLayer.clearLayers();
+ graceMarkers.filter(m=>m.layer===layer).forEach(m=>{
+  const marker=L.marker(graceLatLng(m.x,m.y),{icon:graceIcon(false),title:m.name});
+  marker.bindPopup(`<strong>${esc(m.name)}</strong><br><span style="color:#aaa">${esc(m.region)}</span>`);
+  marker.on("click",()=>selectGraceOnMap(m,false));
+  marker.addTo(gracePinLayer);m._leaflet=marker;
+ });
+}
+function selectGraceOnMap(grace,fly=true){
+ if(!grace)return;
+ if(selectedGraceMarker?._leaflet)selectedGraceMarker._leaflet.setIcon(graceIcon(false));
+ selectedGraceMarker=grace;
+ if(grace.layer!==activeGraceLayer)setGraceLayer(grace.layer);
+ const marker=grace._leaflet;
+ if(marker)marker.setIcon(graceIcon(true));
+ document.getElementById("mapCurrentGrace").textContent=grace.name+" · "+grace.region;
+ if(fly){
+  graceLeaflet.flyTo(graceLatLng(grace.x,grace.y),Math.max(4.5,graceLeaflet.getZoom()),{duration:.65});
+  if(marker)setTimeout(()=>marker.openPopup(),500);
+ }else if(marker)marker.openPopup();
+}
+async function openGraceMap(name){
+ const modal=document.getElementById("graceMapModal");
+ modal.classList.add("open");modal.setAttribute("aria-hidden","false");
+ document.body.style.overflow="hidden";
+ document.getElementById("mapStatus").textContent="Loading map markers…";
+ try{
+  await loadGraceMarkers();makeGraceLeaflet();
+  const key=graceKey(name);
+  const aliases={"ash capital":"Leyndell, Capital of Ash","leyndell capital of ash":"Leyndell, Capital of Ash"};
+  const grace=graceMarkers.find(m=>graceKey(m.name)===key)||graceMarkers.find(m=>graceKey(m.name)===graceKey(aliases[key]||""));
+  if(!grace)throw Error("No map coordinate found for "+name);
+  setGraceLayer(grace.layer);
+  document.getElementById("mapStatus").textContent=graceMarkers.filter(m=>m.layer===grace.layer).length+" Sites of Grace on this layer";
+  selectGraceOnMap(grace,true);
+  document.getElementById("mapSearch").value="";
+  setTimeout(()=>graceLeaflet.invalidateSize(),80);
+ }catch(err){document.getElementById("mapStatus").textContent="Map data unavailable: "+err.message;}
+}
+function closeGraceMap(){
+ document.getElementById("graceMapModal").classList.remove("open");
+ document.getElementById("graceMapModal").setAttribute("aria-hidden","true");
+ document.body.style.overflow="";
+}
+document.addEventListener("click",e=>{
+ const mapButton=e.target.closest("[data-map-grace]");
+ if(mapButton){e.preventDefault();openGraceMap(mapButton.dataset.mapGrace);}
+});
+document.getElementById("closeGraceMap").addEventListener("click",closeGraceMap);
+document.getElementById("graceMapModal").addEventListener("click",e=>{if(e.target.id==="graceMapModal")closeGraceMap();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeGraceMap();});
+document.getElementById("mapLayerTabs").addEventListener("click",e=>{
+ const b=e.target.closest("[data-map-layer]");if(!b||!graceLeaflet)return;
+ setGraceLayer(b.dataset.mapLayer);
+ document.getElementById("mapStatus").textContent=graceMarkers.filter(m=>m.layer===activeGraceLayer).length+" Sites of Grace on this layer";
+});
+document.getElementById("mapSearch").addEventListener("input",e=>{
+ const q=graceKey(e.target.value);if(!q)return;
+ const m=graceMarkers.find(x=>x.layer===activeGraceLayer&&graceKey(x.name).includes(q));
+ if(m)selectGraceOnMap(m,true);
+});
 
 renderRegions();renderQuests();renderConflicts();renderEndings();updateProgress();
-initializeGraceMapLinks();
 document.addEventListener("change",e=>{if(e.target.matches('input[type="checkbox"][data-id]')){const id=e.target.dataset.id;saved[id]=e.target.checked;localStorage.setItem(stateKey,JSON.stringify(saved));e.target.closest(".check").classList.toggle("done",e.target.checked);updateProgress();}});
 document.addEventListener("click",e=>{
  const head=e.target.closest(".region-head");if(head)head.closest(".region").classList.toggle("open");
