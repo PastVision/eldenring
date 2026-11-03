@@ -21,7 +21,8 @@ main{max-width:1180px;margin:24px auto;padding:0 18px 70px}.hero{display:grid;gr
 .note{border-left:3px solid var(--gold);background:#d6b66c12;padding:10px 13px;border-radius:0 8px 8px 0;margin:12px 0;color:#d9d4c5;font-size:13px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--gold);font-weight:600}tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:3px 7px;border-radius:99px;background:#ffffff0b;color:var(--muted);font-size:11px}
 .quest-card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px;margin:9px 0}.quest-card h3{font:17px Georgia,serif;color:var(--gold);margin:0 0 7px}.quest-card p{margin:5px 0;color:var(--muted);font-size:13px}.quest-card ul{margin:8px 0 0;padding-left:20px}.quest-card li{margin:4px 0}.conflict{border:1px solid #65423b;background:#281b19;border-radius:12px;padding:14px;margin:10px 0}.conflict h3{margin:0 0 6px;color:#e4a093;font:17px Georgia,serif}.conflict p{margin:5px 0;color:#d0c3ba;font-size:13px}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:12px}.footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.grace-catalog-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0}.grace-catalog-tools input,.grace-catalog-tools select{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 12px;color:var(--text);font:inherit}.grace-catalog-tools input{flex:1;min-width:220px}.grace-catalog-tools select{min-width:220px}.grace-area{border:1px solid var(--line);background:var(--panel);border-radius:12px;margin:9px 0;overflow:hidden}.grace-area summary{cursor:pointer;list-style:none;padding:12px 15px;color:var(--gold);font:16px Georgia,serif}.grace-area summary::-webkit-details-marker{display:none}.grace-area summary:after{content:'＋';float:right;color:var(--muted);font:14px system-ui}.grace-area[open] summary:after{content:'−'}.grace-area .checklist{padding:0 10px 12px;grid-template-columns:repeat(2,minmax(0,1fr))}.grace-area .check{border-bottom:1px solid #ffffff08}.grace-area .check-main{overflow-wrap:anywhere}.grace-area .map-link{margin-left:auto}@media(max-width:760px){.grace-area .checklist{grid-template-columns:1fr}}.small{font-size:12px}.footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
 @media(max-width:760px){.hero{grid-template-columns:1fr}.cols{grid-template-columns:1fr}.region-meta{display:none}header{position:static}.stats{gap:6px}.stat{padding:9px}.stat strong{font-size:20px}}
 
 /* Integrated map overlay */
@@ -74,6 +75,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
  <div class="brand"><div class="sigil">✦</div><div><h1>The Lands Between</h1><div class="subtitle">ELDEN RING · PROGRESSION COMPANION · BASE GAME</div></div></div>
  <nav>
   <button class="tab active" data-view="route">Region route</button>
+  <button class="tab" data-view="allgraces">All Sites of Grace</button>
   <button class="tab" data-view="quests">NPC questlines</button>
   <button class="tab" data-view="lockouts">Conflicts & lockouts</button>
   <button class="tab" data-view="endings">Endings</button>
@@ -99,6 +101,13 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
   <div class="note"><b>Route philosophy:</b> Recommended order, not a mandatory sequence. Suggested levels are approximate. Grace lists are curated route anchors, not an exhaustive list of every dungeon grace in the game. The checklist intentionally focuses on major content and key quest triggers.</div>
   <div id="regions"></div>
  </section>
+ <section class="view" id="allgraces">
+  <h2 class="section-title">All Sites of Grace</h2>
+  <p class="muted">A full searchable catalogue built from the map marker dataset, including dungeon, cave, catacomb, legacy-dungeon and underground graces. Check them off independently of the recommended route above.</p>
+  <div class="note"><b>Coverage:</b> Base game and Shadow of the Erdtree are included. The catalogue loads its marker names and area labels from the community map dataset; an internet connection is required. Duplicate names in different areas remain separate entries.</div>
+  <div class="grace-catalog-tools"><input id="allGraceSearch" type="search" placeholder="Search Sites of Grace or areas…" autocomplete="off"><select id="allGraceLayer"><option value="all">Base game + Shadow Realm</option><option value="base">Base game only</option><option value="M10">Shadow of the Erdtree only</option></select><span id="allGraceCount" class="muted small">Loading complete catalogue…</span></div>
+  <div id="allGraceGroups"></div>
+ </section>
  <section class="view" id="quests">
   <h2 class="section-title">NPC questline tracker</h2>
   <p class="muted">Track the major questlines independently of region progression. Quest steps are summarized to avoid giving away every dialogue detail.</p>
@@ -115,7 +124,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
   <p class="muted">You can prepare several ending questlines in one playthrough, but choose only one ending at the conclusion. Frenzied Flame needs special handling because it overrides the ordinary choice.</p>
   <div id="endingList"></div>
  </section>
- <div class="footer">Unofficial fan-made checklist · No game files or external services required · Progress stored locally in your browser</div>
+ <div class="footer">Unofficial fan-made checklist · Community map data and tiles load online · Checklist progress stored locally in your browser</div>
 </main>
 
 <!-- Integrated Elden Ring map -->
@@ -207,8 +216,9 @@ const endings=[
 const stateKey="elden-ring-companion-v1";
 let saved={};try{saved=JSON.parse(localStorage.getItem(stateKey)||"{}")}catch(e){}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function checklistId(text){return "i-"+btoa(unescape(encodeURIComponent(text))).replace(/[^a-zA-Z0-9]/g,"").slice(0,28);}
 function item(text,tag="",isGrace=false){
- const id="i-"+btoa(unescape(encodeURIComponent(text))).replace(/[^a-zA-Z0-9]/g,"").slice(0,28);
+ const id=checklistId(text);
  return `<div class="check ${saved[id]?"done":""}" data-search="${esc(text.toLowerCase())}">
   <label class="check-main"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(text)} ${tag?`<span class="tag ${tag.toLowerCase()}">${esc(tag)}</span>`:""}</span></label>
   ${isGrace?`<button class="map-link" type="button" data-map-grace="${esc(text)}">View in map ↗</button>`:""}
@@ -233,7 +243,7 @@ const GRACE_MARKER_SOURCE="https://raw.githubusercontent.com/jw-ofs/elden-ring-m
 const GRACE_TILE_SOURCE="https://jw-ofs.github.io/elden-ring-map/ctiles/{map}/base/{z}/{y}/{x}.webp";
 const GRACE_MAP_SIZE=10496, GRACE_NATIVE_ZOOM=6, GRACE_SCALE=64;
 let graceMarkers=[], graceLeaflet=null, graceTileLayer=null, gracePinLayer=null;
-let selectedGraceMarker=null, activeGraceLayer="M00", mapMarkerPromise=null;
+let selectedGraceMarker=null, activeGraceLayer="M00", mapMarkerPromise=null, graceCatalogReady=false;
 
 function graceKey(s){return String(s).toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g,"").replace(/[^a-z0-9]+/g," ").trim();}
 function graceLatLng(px,py){return L.latLng(-py/GRACE_SCALE,px/GRACE_SCALE);}
@@ -252,6 +262,22 @@ async function loadGraceMarkers(){
   mapMarkerPromise=fetch(GRACE_MARKER_SOURCE).then(r=>{if(!r.ok)throw Error("Could not load Grace coordinates");return r.text()}).then(parseGraceMarkers);
  }
  graceMarkers=await mapMarkerPromise;return graceMarkers;
+}
+function renderAllGraceCatalog(){
+ const host=document.getElementById("allGraceGroups");
+ const query=graceKey(document.getElementById("allGraceSearch").value);
+ const layerFilter=document.getElementById("allGraceLayer").value;
+ const visible=graceMarkers.filter(m=>(layerFilter==="all"||(layerFilter==="base"&&m.layer!=="M10")||m.layer===layerFilter)&&(!query||graceKey(m.name+" "+m.region).includes(query)));
+ const groups=new Map();
+ visible.forEach(m=>{const key=(m.layer==="M10"?"Shadow of the Erdtree · ":m.layer==="M01"?"Underground · ":"")+m.region;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(m);});
+ host.innerHTML=[...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([area,items])=>`<details class="grace-area"><summary>${esc(area)} <span class="pill">${items.length}</span></summary><div class="checklist">${items.sort((a,b)=>a.name.localeCompare(b.name)).map(m=>{const id=checklistId(m.name+" — "+m.region);return `<div class="check ${saved[id]?"done":""}" data-search="${esc(graceKey(m.name+" "+m.region))}"><label class="check-main"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span class="label">${esc(m.name)}</span></label><button class="map-link" type="button" data-map-grace="${esc(m.name)}" data-map-grace-id="${esc(m.id)}">View in map ↗</button></div>`;}).join("")}</div></details>`).join("")||'<p class="muted">No Sites of Grace match this search.</p>';
+ document.getElementById("allGraceCount").textContent=`Showing ${visible.length} of ${graceMarkers.length} mapped Sites of Grace`;
+ updateProgress();
+}
+async function initAllGraceCatalog(){
+ const host=document.getElementById("allGraceGroups");
+ try{await loadGraceMarkers();graceCatalogReady=true;renderAllGraceCatalog();}
+ catch(err){host.innerHTML=`<div class="note">Could not load the complete Grace catalogue. Check your internet connection and reload the page. (${esc(err.message)})</div>`;document.getElementById("allGraceCount").textContent="Catalogue unavailable";}
 }
 function makeGraceLeaflet(){
  if(graceLeaflet)return;
@@ -286,7 +312,7 @@ function selectGraceOnMap(grace,fly=true){
   if(marker)setTimeout(()=>marker.openPopup(),500);
  }else if(marker)marker.openPopup();
 }
-async function openGraceMap(name){
+async function openGraceMap(name, markerId=null){
  const modal=document.getElementById("graceMapModal");
  modal.classList.add("open");modal.setAttribute("aria-hidden","false");
  document.body.style.overflow="hidden";
@@ -295,7 +321,7 @@ async function openGraceMap(name){
   await loadGraceMarkers();makeGraceLeaflet();
   const key=graceKey(name);
   const aliases={"ash capital":"Leyndell, Capital of Ash","leyndell capital of ash":"Leyndell, Capital of Ash"};
-  const grace=graceMarkers.find(m=>graceKey(m.name)===key)||graceMarkers.find(m=>graceKey(m.name)===graceKey(aliases[key]||""));
+  const grace=(markerId&&graceMarkers.find(m=>m.id===markerId))||graceMarkers.find(m=>graceKey(m.name)===key)||graceMarkers.find(m=>graceKey(m.name)===graceKey(aliases[key]||""));
   if(!grace)throw Error("No map coordinate found for "+name);
   setGraceLayer(grace.layer);
   document.getElementById("mapStatus").textContent=graceMarkers.filter(m=>m.layer===grace.layer).length+" Sites of Grace on this layer";
@@ -311,7 +337,7 @@ function closeGraceMap(){
 }
 document.addEventListener("click",e=>{
  const mapButton=e.target.closest("[data-map-grace]");
- if(mapButton){e.preventDefault();openGraceMap(mapButton.dataset.mapGrace);}
+ if(mapButton){e.preventDefault();openGraceMap(mapButton.dataset.mapGrace,mapButton.dataset.mapGraceId||null);}
 });
 document.getElementById("closeGraceMap").addEventListener("click",closeGraceMap);
 document.getElementById("graceMapModal").addEventListener("click",e=>{if(e.target.id==="graceMapModal")closeGraceMap();});
@@ -321,13 +347,15 @@ document.getElementById("mapLayerTabs").addEventListener("click",e=>{
  setGraceLayer(b.dataset.mapLayer);
  document.getElementById("mapStatus").textContent=graceMarkers.filter(m=>m.layer===activeGraceLayer).length+" Sites of Grace on this layer";
 });
+document.getElementById("allGraceSearch").addEventListener("input",()=>{if(graceCatalogReady)renderAllGraceCatalog();});
+document.getElementById("allGraceLayer").addEventListener("change",()=>{if(graceCatalogReady)renderAllGraceCatalog();});
 document.getElementById("mapSearch").addEventListener("input",e=>{
  const q=graceKey(e.target.value);if(!q)return;
  const m=graceMarkers.find(x=>x.layer===activeGraceLayer&&graceKey(x.name).includes(q));
  if(m)selectGraceOnMap(m,true);
 });
 
-renderRegions();renderQuests();renderConflicts();renderEndings();updateProgress();
+renderRegions();renderQuests();renderConflicts();renderEndings();updateProgress();initAllGraceCatalog();
 document.addEventListener("change",e=>{if(e.target.matches('input[type="checkbox"][data-id]')){const id=e.target.dataset.id;saved[id]=e.target.checked;localStorage.setItem(stateKey,JSON.stringify(saved));e.target.closest(".check").classList.toggle("done",e.target.checked);updateProgress();}});
 document.addEventListener("click",e=>{
  const head=e.target.closest(".region-head");if(head)head.closest(".region").classList.toggle("open");
